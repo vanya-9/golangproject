@@ -15,8 +15,8 @@ func (r *UsersRepository) DeleteUser(
 	defer cancel()
 
 	query := `
-	DELETE from trackingapp.users
-	WHERE id = $1
+	DELETE FROM trackingapp.users
+	WHERE id = $1;
 	`
 
 	cmdTag, err := r.pool.Exec(ctx, query, id)

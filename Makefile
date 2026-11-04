@@ -13,7 +13,7 @@ env-cleanup:
 	@read -p "Очистить все volume файлы окружения? [y/N]: " ans; \
 	if [ "$$ans" = "y" ]; then \
 		docker compose down trackingapp-postgres port-forwarder && \
-		rm -rf out/pgdata && \
+		rm -rf ${PROJECT_ROOT}/out/pgdata && \
 		echo "Файлы окружения очищены"; \
 	else \
 		echo "Очистка окружения отменена"; \
@@ -55,4 +55,4 @@ migrate-action:
 trackingapp-run:
 	@export LOGGER_FOLDER=${PROJECT_ROOT}/out/logs && \
 	export POSTGRES_HOST=localhost && \
-	go run cmd/trackingapp/main.go
+ 	go run ${PROJECT_ROOT}/cmd/trackingapp/main.go
