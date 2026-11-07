@@ -52,6 +52,15 @@ migrate-action:
 		-database postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@trackingapp-postgres:5432/${POSTGRES_DB}?sslmode=disable \
 		"$(action)"
 
+logs-cleanup:
+	@read -p "Очистить все логи приложения? Опасность утери логов. [y/N]: " ans; \
+	if [ "$$ans" = "y" ]; then \
+		rm -rf ${PROJECT_ROOT}/out/logs && \
+		echo "Логи приложения очищены"; \
+	else \
+		echo "Очистка логов приложения отменена"; \
+	fi
+
 trackingapp-run:
 	@export LOGGER_FOLDER=${PROJECT_ROOT}/out/logs && \
 	export POSTGRES_HOST=localhost && \
