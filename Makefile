@@ -70,5 +70,8 @@ trackingapp-run:
 trackingapp-deploy:
 	@docker compose up -d --build trackingapp
 
+trackingapp-undeploy:
+	@docker compose down trackingapp
+
 ps:
 	@docker compose ps
