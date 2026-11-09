@@ -23,7 +23,8 @@ env-port-forwarder:
 	@docker compose up -d port-forwarder 
 
 env-port-close:
-	@docker compose down -d port-forwarder
+	@docker compose down port-forwarder
+# 	@docker compose down -d port-forwarder
 
 migrate-create:
 	@if [ -z "$(seq)" ]; then \
@@ -65,3 +66,9 @@ trackingapp-run:
 	@export LOGGER_FOLDER=${PROJECT_ROOT}/out/logs && \
 	export POSTGRES_HOST=localhost && \
  	go run ${PROJECT_ROOT}/cmd/trackingapp/main.go
+
+trackingapp-deploy:
+	@docker compose up -d --build trackingapp
+
+ps:
+	@docker compose ps
